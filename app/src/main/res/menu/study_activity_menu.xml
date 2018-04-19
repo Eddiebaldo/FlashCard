@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:anymemo="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/menuspeakquestion"
+            android:icon="@drawable/speak_q_48"
+            android:title="@string/speak_question_menu_text" />
+    <item android:id="@+id/menuspeakanswer"
+            android:icon="@drawable/speak_a_48"
+            android:title="@string/speak_answer_menu_text" />
+    <item android:id="@+id/menu_context_edit"
+            android:icon="@drawable/ic_menu_edit"
+            anymemo:showAsAction="ifRoom"
+            android:title="@string/edit_text" />
+    <item android:id="@+id/menu_context_delete"
+            android:title="@string/delete_text" />
+</menu>
