@@ -1,11 +1,14 @@
 package com.four.team.flashcardapp.studyobjects;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 public class Folder {
 
 	private String subject; //name of the folder
 	private ArrayList<Flashcard> cards;
+	private LinkedList<Flashcard> quiz;//will be the random order of cards toi show like a quiz
+	private Flashcard current;
 	
 	Folder(String subject){//constructor which will set the name of the folder
 		this.subject = subject;
@@ -29,7 +32,24 @@ public class Folder {
 		return subject;
 	}
 
-	public ArrayList shuffle(){ //a shuffle method for the purpose of the game class
+	public Flashcard getCurrent(){
+		return current;
+	}
+
+	public LinkedList<Flashcard> getQuiz() {
+		return quiz;
+	}
+
+	public void setQuiz(){//sets the linked list quiz to the shuffled cards
+		ArrayList<Flashcard> temp = shuffle();
+		LinkedList<Flashcard> newQuiz = new LinkedList<>();
+		for(int i = 0; i < temp.size(); i++){
+			newQuiz.add(temp.get(i));
+		}
+		quiz = newQuiz;
+	}
+
+	private ArrayList shuffle(){ // shuffles the cards for the linked list
 		ArrayList<Flashcard> mixed = cards;
 		Random r = new Random();
 		Flashcard temp;

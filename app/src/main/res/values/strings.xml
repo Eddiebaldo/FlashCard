@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flashcard App</string>
+    <string name="title_activity_view_folders">ViewFolders</string>
 </resources>
