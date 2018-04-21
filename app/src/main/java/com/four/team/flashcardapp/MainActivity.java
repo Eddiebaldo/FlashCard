@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.four.team.flashcardapp.adapters.FolderAdapter;
 import com.four.team.flashcardapp.room.database.AppDatabase;
@@ -17,7 +18,7 @@ import com.four.team.flashcardapp.room.domain.Folder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     AppDatabase db;//the database for the app
     FolderAdapter folderAdapter = new FolderAdapter(new ArrayList<Folder>());//adapter for connecting folder objects to the recyclert view
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
         * */
         folderList.setAdapter(folderAdapter);
         folderList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        folderAdapter.setOnItemClickListener(new FolderAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {//this sets an on click listener for the items in the recycler view
+                Intent intent = new Intent(MainActivity.this, CardView.class);
+                intent.putExtra("folderID", folderAdapter.getItemId(position));
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -70,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
     private void retrieveData(){
         DataAccess retrieve = new DataAccess(db, folderAdapter);
         retrieve.execute();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
     static class DataAccess extends AsyncTask<Void, Void, List<Folder>>{ //for retrieving data from database

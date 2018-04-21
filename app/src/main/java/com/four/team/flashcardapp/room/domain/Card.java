@@ -15,7 +15,7 @@ public class Card {
     @ColumnInfo (name = "answer")
     private String answer;
     @ColumnInfo (name = "folderID")
-    private String folderID;
+    private long folderID;
 
     public long getId() {
         return id;
@@ -42,11 +42,11 @@ public class Card {
         this.answer = answer;
     }
 
-    public String getFolderID() {
+    public long getFolderID() {
         return folderID;
     }
 
-    public void setFolderID(String folderID) {
+    public void setFolderID(long folderID) {
         this.folderID = folderID;
     }
 }

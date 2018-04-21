@@ -23,6 +23,9 @@ public interface CardDao {
     @Query("SELECT * FROM card")
     List<Card> getAll();
 
+    @Query("SELECT * FROM card WHERE folderID LIKE :name")
+    List<Card> findCardsByFolder(long name);
+
     @Delete
     void deleteAll(Card... cards);
 
