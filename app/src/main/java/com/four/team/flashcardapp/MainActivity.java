@@ -19,8 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    AppDatabase db;
-    FolderAdapter folderAdapter = new FolderAdapter(new ArrayList<Folder>());
+    AppDatabase db;//the database for the app
+    FolderAdapter folderAdapter = new FolderAdapter(new ArrayList<Folder>());//adapter for connecting folder objects to the recyclert view
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView folderList =  (RecyclerView) findViewById(R.id.viewFolders);//sets the recycler view
-        FloatingActionButton addFolder = (FloatingActionButton) findViewById(R.id.addFolder);
+        FloatingActionButton addFolder = (FloatingActionButton) findViewById(R.id.addFolder);//button for adding folders
 
+
+        /*
+        * This onCLickListener will send an intent to a new activity for adding a new folder
+        * */
         addFolder.setOnClickListener(new View.OnClickListener() {//action taken when the addFolder button is clicked
             @Override
             public void onClick(View v) {
@@ -37,15 +41,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        db = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName).build();
+        db = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName).build();//instanciates the database
 
-        retrieveData();
+        retrieveData();//retrieve the data from the DB
 
+
+        /*
+        * This will populate the list of folders
+        * */
         folderList.setAdapter(folderAdapter);
         folderList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
     }
 
+
+    /*
+    * this will take the information returned from the sent intent is received
+    * it will enter it into the database and repopulate the list.
+    * */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {//when the add button retrurns the results
         Folder newFolder = new Folder();
@@ -82,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(folders);
         }
     }
+
+    /*
+    * This class is for entering data into the database
+    * */
     static class DataEnter extends AsyncTask<Folder, Void, Folder> { //for entering data into database
 
         private AppDatabase db;
