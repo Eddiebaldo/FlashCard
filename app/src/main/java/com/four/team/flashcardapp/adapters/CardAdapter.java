@@ -21,6 +21,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         void OnItemClick(String answer);
 
+        void OnItemLongClick(String answer);
+
     }
 
     public void setOnItemClickListener(OnItemClickListener mListener){
