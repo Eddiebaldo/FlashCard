@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,25 @@ public class CardView extends AppCompatActivity {
     CardAdapter cardAdapter = new CardAdapter(new ArrayList<Card>());
     long folderId;
 
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            // Row is swiped from recycler view
+            // remove it from adapter
+            long cardID = ((CardAdapter.ViewHolder)viewHolder).getCardID();
+            DataRemove delete = new DataRemove(db, cardAdapter, cardID);
+            delete.execute();
+            retrieveData();
+        }
+    };
+
+// attaching the touch helper to recycler view
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +64,8 @@ public class CardView extends AppCompatActivity {
         db = AppDatabase.getDatabaseInstance(this);
 
         retrieveData();
+
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(cardList);//
 
         //populate the list of cards
         cardList.setAdapter(cardAdapter);
@@ -172,6 +194,39 @@ public class CardView extends AppCompatActivity {
                 cardAdapter.addCard(aVoid);
             }
             super.onPostExecute(aVoid);
+        }
+    }
+
+    static class DataRemove extends AsyncTask<Card, Void, Card> { //for removing data into database
+
+        private AppDatabase db;
+        private CardAdapter cardAdapter;
+        private long cardID;
+        private Card goodbye;
+
+        public DataRemove(AppDatabase db, CardAdapter cardAdapter, long cardID){
+            this.db = db;
+            this.cardAdapter = cardAdapter;
+            this.cardID = cardID;
+
+        }
+        @Override
+        protected Card doInBackground(Card... subjects) {
+            // List<Folder> folders = new ArrayList<Folder>();
+            if(cardID >= 0) {
+                goodbye = db.cardDao().getCard(cardID);
+                //folderAdapter.removeFolder(goodbye);
+                db.cardDao().delete(goodbye);
+               // db.cardDao().deleteFromTable(folderID);
+            }
+            return goodbye;
+        }
+
+        @Override
+        protected void onPostExecute(Card aVoid) {
+            super.onPostExecute(aVoid);
+            //folderAdapter.removeFolder(aVoid);
+
         }
     }
 }

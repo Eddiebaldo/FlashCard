@@ -33,6 +33,9 @@ public interface CardDao {
     @Query("DELETE FROM card WHERE folderID = :name")
     void deleteFromTable(long name);
 
+    @Query("SELECT * FROM card WHERE id =:name")
+    Card getCard(long name);
+
     @Delete
     void delete(Card card);
 

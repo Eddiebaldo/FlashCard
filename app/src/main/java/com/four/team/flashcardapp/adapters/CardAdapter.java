@@ -68,6 +68,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             textView.setText(card.getQuestion());
 
         }
+
+        public long getCardID(){
+            return card.getId();
+        }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
