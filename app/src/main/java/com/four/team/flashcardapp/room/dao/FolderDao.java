@@ -17,6 +17,12 @@ public interface FolderDao {
     @Query("SELECT * FROM folder")
     List<Folder> getAll();
 
+    @Query("SELECT * FROM folder WHERE id = :name")
+    Folder getFolder(long name);
+
+    @Query("DELETE from folder WHERE id = :name")
+    void deleteFromTable(long name);
+
     @Insert
     void insertAll(Folder... folders);
 

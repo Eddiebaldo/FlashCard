@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddFolder" />
-        <activity android:name=".CardView"></activity>
+        <activity android:name=".CardView" />
+        <activity android:name=".AddCardActivity" />
+        <activity android:name=".ViewAnswerActivity"></activity>
     </application>
 
 </manifest>

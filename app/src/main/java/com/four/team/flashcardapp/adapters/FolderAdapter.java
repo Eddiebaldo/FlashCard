@@ -23,13 +23,15 @@ import java.util.ArrayList;
 }*/
 
 public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder> {
+
+
     private ArrayList<Folder> mDataset;
 
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
 
-        void OnItemClick(int position);
+        void OnItemClick(long folderId);
 
     }
 
@@ -52,7 +54,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                     if (mListener != null){
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
-                            mListener.OnItemClick(position);
+                            mListener.OnItemClick(folder.getId());
                         }
                     }
                 }
@@ -106,6 +108,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         mDataset.remove(index);
         notifyItemRemoved(index);
     }
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override

@@ -17,16 +17,26 @@ public interface CardDao {
     @Insert
     void insertAll(Card... cards);
 
+    @Insert
+    long insertOne(Card card);
+
+
     @Update
     void updateAll(Card... cards);
 
     @Query("SELECT * FROM card")
     List<Card> getAll();
 
-    @Query("SELECT * FROM card WHERE folderID LIKE :name")
+    @Query("SELECT * FROM card WHERE folderID = :name")
     List<Card> findCardsByFolder(long name);
 
+    @Query("DELETE FROM card WHERE folderID = :name")
+    void deleteFromTable(long name);
+
     @Delete
-    void deleteAll(Card... cards);
+    void delete(Card card);
+
+    @Delete
+    void delete(Card... cards);
 
 }

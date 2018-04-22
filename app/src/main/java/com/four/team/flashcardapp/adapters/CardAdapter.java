@@ -15,19 +15,42 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     private ArrayList<Card> mDataset;
 
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+
+        void OnItemClick(String answer);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener mListener){
+        this.mListener = mListener;
+    }
+
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public Card card;
-        public ViewHolder(View v) {
+        public ViewHolder(View v, final OnItemClickListener mListener) {
             super(v);
             //mTextView = v.findViewById(R.id.folderName);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.OnItemClick(card.getAnswer());
+                        }
+                    }
+                }
+            });
         }
         public void bind(Card card){
             this.card = card;
-            TextView textView = itemView.findViewById(R.id.folderName);
+            TextView textView = itemView.findViewById(R.id.cardName);
             textView.setText(card.getQuestion());
 
         }
@@ -49,8 +72,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                                                        int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.folderitem, parent, false);
-        return new ViewHolder(v);
+                .inflate(R.layout.carditem, parent, false);
+        return new ViewHolder(v, mListener);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
