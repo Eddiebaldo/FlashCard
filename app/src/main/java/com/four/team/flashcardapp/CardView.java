@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.four.team.flashcardapp.adapters.CardAdapter;
 import com.four.team.flashcardapp.room.database.AppDatabase;
@@ -30,8 +31,9 @@ public class CardView extends AppCompatActivity {
         setContentView(R.layout.activity_card_view);
 
         RecyclerView cardList = (RecyclerView) findViewById(R.id.cardView);
-        FloatingActionButton addCard = findViewById(R.id.addCard);//button for addin cards
+        FloatingActionButton addCard = findViewById(R.id.addCard2);//button for addin cards
         Button delete = findViewById(R.id.deleteFolder);//button for deleting folder
+        FloatingActionButton homeBtn = findViewById(R.id.homebutton);
 
         folderId = getIntent().getLongExtra("folderID", 0);
         Log.d("Intent", "onCreate: folder ID is " + folderId);
@@ -71,6 +73,14 @@ public class CardView extends AppCompatActivity {
                 Intent intent = new Intent(CardView.this, MainActivity.class);
                 intent.putExtra("delete", true);
                 intent.putExtra("folderID", folderId);
+                startActivity(intent);
+            }
+        });
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardView.this, MainActivity.class);
                 startActivity(intent);
             }
         });

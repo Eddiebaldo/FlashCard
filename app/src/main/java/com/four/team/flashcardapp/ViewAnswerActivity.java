@@ -1,6 +1,7 @@
 package com.four.team.flashcardapp;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +18,16 @@ public class ViewAnswerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_answer);
 
         TextView answer = findViewById(R.id.answerView);
-        Button done = findViewById(R.id.done);
+        TextView question;
+//        question = (TextView)findViewById(R.id.questionView);
+
+
+        FloatingActionButton done = findViewById(R.id.done);
 
         start = getIntent();
 
         answer.setText(start.getStringExtra("answer"));
+       // question.setText(start.getStringExtra("question"));
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override
