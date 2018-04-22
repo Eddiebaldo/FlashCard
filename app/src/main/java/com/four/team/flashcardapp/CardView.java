@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import com.four.team.flashcardapp.adapters.CardAdapter;
 import com.four.team.flashcardapp.room.database.AppDatabase;
 import com.four.team.flashcardapp.room.domain.Card;
+import com.mapzen.speakerbox.Speakerbox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public class CardView extends AppCompatActivity {
         folderId = getIntent().getLongExtra("folderID", 0);
         Log.d("Intent", "onCreate: folder ID is " + folderId);
 
+        final Speakerbox speakerbox = new Speakerbox(getApplication());
+
         db = AppDatabase.getDatabaseInstance(this);
 
         retrieveData();
@@ -51,6 +54,11 @@ public class CardView extends AppCompatActivity {
                 Intent intent = new Intent(CardView.this, ViewAnswerActivity.class);
                 intent.putExtra("answer", answer);
                 startActivity(intent);
+            }
+
+            @Override
+            public void OnItemLongClick(String question) {
+                speakerbox.play(question);
             }
         });
 
