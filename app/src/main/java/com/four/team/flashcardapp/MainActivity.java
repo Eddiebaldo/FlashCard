@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import com.four.team.flashcardapp.adapters.FolderAdapter;
 import com.four.team.flashcardapp.room.database.AppDatabase;
 import com.four.team.flashcardapp.room.domain.Folder;
+import com.mapzen.speakerbox.Speakerbox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         RecyclerView folderList =  (RecyclerView) findViewById(R.id.viewFolders);//sets the recycler view
         FloatingActionButton addFolder = (FloatingActionButton) findViewById(R.id.addFolder);//button for adding folders
+
+
+        /*
+        * Taken from https://github.com/mapzen/speakerbox
+        * */
+        final Speakerbox speakerbox = new Speakerbox(getApplication());
 
 
         /*
@@ -67,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent intent = new Intent(MainActivity.this, CardView.class);
                 intent.putExtra("folderID", folderId);
                 startActivity(intent);
+            }
+
+            @Override
+            public void OnItemLongClick(String folderName) {
+                speakerbox.play(folderName);
             }
         });
 

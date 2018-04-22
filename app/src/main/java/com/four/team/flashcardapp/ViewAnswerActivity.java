@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mapzen.speakerbox.Speakerbox;
+
 public class ViewAnswerActivity extends AppCompatActivity {
 
     Intent start;
@@ -17,9 +19,21 @@ public class ViewAnswerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_answer);
 
-        TextView answer = findViewById(R.id.answerView);
+        final TextView answer = findViewById(R.id.answerView);
         TextView question;
 //        question = (TextView)findViewById(R.id.questionView);
+
+        final Speakerbox speakerbox = new Speakerbox(getApplication());
+
+
+        answer.setOnLongClickListener(new View.OnLongClickListener(){
+
+            @Override
+            public boolean onLongClick(View v) {
+                speakerbox.play(answer.getText().toString());
+                return true;
+            }
+        });
 
 
         FloatingActionButton done = findViewById(R.id.done);
