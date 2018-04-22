@@ -20,6 +20,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public interface OnItemClickListener{
 
         void OnItemClick(String answer);
+        void OnItemLongClick(String question);
 
         void OnItemLongClick(String answer);
 
@@ -35,7 +36,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public Card card;
-        public ViewHolder(View v, final OnItemClickListener mListener) {
+        public ViewHolder(View v, final OnItemClickListener mListener, final ArrayList<Card> mDataset) {
             super(v);
             //mTextView = v.findViewById(R.id.folderName);
             v.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +48,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                             mListener.OnItemClick(card.getAnswer());
                         }
                     }
+                }
+            });
+            v.setOnLongClickListener(new View.OnLongClickListener(){
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = getAdapterPosition();
+                    if(mListener != null){
+                        mListener.OnItemLongClick(mDataset.get(position).getQuestion());
+                        return true;
+                    }
+                    return false;
                 }
             });
         }
@@ -75,7 +87,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.carditem, parent, false);
-        return new ViewHolder(v, mListener);
+        return new ViewHolder(v, mListener, mDataset);
     }
 
     // Replace the contents of a view (invoked by the layout manager)

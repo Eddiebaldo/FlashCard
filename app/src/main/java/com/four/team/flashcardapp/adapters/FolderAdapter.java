@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.four.team.flashcardapp.R;
 import com.four.team.flashcardapp.room.domain.Folder;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /*class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -33,6 +34,8 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
 
         void OnItemClick(long folderId);
 
+        void OnItemLongClick(String folderName);
+
     }
 
     public void setOnItemClickListener(OnItemClickListener mListener){
@@ -45,9 +48,10 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public Folder folder;
-        public ViewHolder(View v, final OnItemClickListener mListener) {
+        public ViewHolder(View v, final OnItemClickListener mListener, final ArrayList<Folder> mDataset) {
             super(v);
             //mTextView = v.findViewById(R.id.folderName);
+
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -59,6 +63,17 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                     }
                 }
             });
+            v.setOnLongClickListener(new View.OnLongClickListener(){
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = getAdapterPosition();
+                    if(mListener != null){
+                       mListener.OnItemLongClick(mDataset.get(position).getSubject());
+                       return true;
+                    }
+                    return false;
+                }
+            });
         }
         public void bind(Folder folder){
             this.folder = folder;
@@ -67,6 +82,10 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
 
         }
 
+    }
+
+    public ArrayList<Folder> getmDataset(){
+        return mDataset;
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -86,7 +105,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.folderitem, parent, false);
-        return new ViewHolder(v, mListener);
+        return new ViewHolder(v, mListener, mDataset);
     }
 
     // Replace the contents of a view (invoked by the layout manager)

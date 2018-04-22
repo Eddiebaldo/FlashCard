@@ -10,10 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.four.team.flashcardapp.adapters.CardAdapter;
 import com.four.team.flashcardapp.room.database.AppDatabase;
 import com.four.team.flashcardapp.room.domain.Card;
+import com.mapzen.speakerbox.Speakerbox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +32,14 @@ public class CardView extends AppCompatActivity {
         setContentView(R.layout.activity_card_view);
 
         RecyclerView cardList = (RecyclerView) findViewById(R.id.cardView);
-        FloatingActionButton addCard = findViewById(R.id.addCard);//button for addin cards
+        FloatingActionButton addCard = findViewById(R.id.addCard2);//button for addin cards
         Button delete = findViewById(R.id.deleteFolder);//button for deleting folder
+        FloatingActionButton homeBtn = findViewById(R.id.homebutton);
 
         folderId = getIntent().getLongExtra("folderID", 0);
         Log.d("Intent", "onCreate: folder ID is " + folderId);
+
+        final Speakerbox speakerbox = new Speakerbox(getApplication());
 
         db = AppDatabase.getDatabaseInstance(this);
 
@@ -49,6 +54,11 @@ public class CardView extends AppCompatActivity {
                 Intent intent = new Intent(CardView.this, ViewAnswerActivity.class);
                 intent.putExtra("answer", answer);
                 startActivity(intent);
+            }
+
+            @Override
+            public void OnItemLongClick(String question) {
+                speakerbox.play(question);
             }
         });
 
@@ -71,6 +81,14 @@ public class CardView extends AppCompatActivity {
                 Intent intent = new Intent(CardView.this, MainActivity.class);
                 intent.putExtra("delete", true);
                 intent.putExtra("folderID", folderId);
+                startActivity(intent);
+            }
+        });
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardView.this, MainActivity.class);
                 startActivity(intent);
             }
         });

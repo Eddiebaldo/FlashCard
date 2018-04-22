@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home_menu_item"
+            android:icon="@mipmap/ic_home_black_24dp"
+            android:title="Main Menu" />
+
+        <item
+            android:id="@+id/add_card_menu_item"
+            android:icon="@mipmap/ic_add_circle_black_24dp"
+            android:title="Add Card" />
+
+        <item
+            android:id="@+id/view_cards_menu_item"
+            android:icon="@mipmap/ic_view_module_black_24dp"
+            android:title="View Cards" />
+
+        <item
+            android:id="@+id/play_cards_menu_item"
+            android:icon="@mipmap/ic_play_circle_filled_black_24dp"
+            android:title="Play Cards" />
+
+        <item
+            android:id="@+id/view_card_decks_menu_item"
+            android:icon="@mipmap/ic_view_module_black_24dp"
+            android:title="View Cards Decks" />
+    </group>
+
+
+</menu>
