@@ -22,7 +22,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         void OnItemClick(String answer);
         void OnItemLongClick(String question);
 
-        void OnItemLongClick(String answer);
+        //void OnItemLongClick(String answer);
 
     }
 
