@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    tools:background="@android:color/holo_blue_bright"
     tools:context=".MainActivity">
 
 
@@ -24,12 +26,26 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/viewFolders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="425dp"
+        android:layout_marginTop="68dp"
         android:background="@android:color/holo_blue_bright"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/folderitem" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="383dp"
+        android:layout_height="63dp"
+        android:background="@android:color/holo_blue_bright"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:inputType="textPersonName"
+        android:text="      Card Decks"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="4dp"
+        tools:text="      Card Decks" />
 
 
 </android.support.constraint.ConstraintLayout>
