@@ -30,4 +30,9 @@ public class AddCardActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        setTitle("Add Flashcard");
+        super.onResume();
+    }
 }

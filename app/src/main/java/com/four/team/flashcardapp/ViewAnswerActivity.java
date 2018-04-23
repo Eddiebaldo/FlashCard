@@ -50,4 +50,10 @@ public class ViewAnswerActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        setTitle("Answer");
+        super.onResume();
+    }
 }

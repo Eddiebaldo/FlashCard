@@ -26,4 +26,10 @@ public class AddFolder extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        setTitle("Add Deck");
+        super.onResume();
+    }
 }

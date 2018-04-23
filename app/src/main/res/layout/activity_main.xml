@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
-    tools:background="@android:color/holo_blue_bright"
+    android:background="@color/colorGrey"
     tools:context=".MainActivity">
 
 
@@ -19,6 +18,7 @@
         android:layout_marginEnd="8dp"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@mipmap/ic_add_circle_black_24dp" />
@@ -28,24 +28,25 @@
         android:layout_width="match_parent"
         android:layout_height="425dp"
         android:layout_marginTop="68dp"
-        android:background="@android:color/holo_blue_bright"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/folderitem" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText"
-        android:layout_width="383dp"
+        android:layout_width="match_parent"
         android:layout_height="63dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@color/colorGrey"
         android:ems="10"
         android:fontFamily="monospace"
-        android:inputType="textPersonName"
-        android:text="      Card Decks"
+        android:gravity="center"
+        android:text="Card Decks"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="4dp"
-        tools:text="      Card Decks" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Card Decks" />
 
 
 </android.support.constraint.ConstraintLayout>

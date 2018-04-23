@@ -5,7 +5,7 @@
     android:id="@+id/bac"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
+    android:background="@color/colorGrey"
     tools:context=".CardView">
 
     <android.support.design.widget.FloatingActionButton
@@ -14,11 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="328dp"
+        android:layout_marginStart="8dp"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/ic_home_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -29,6 +31,7 @@
         android:layout_marginEnd="8dp"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@mipmap/ic_add_circle_black_24dp" />
@@ -42,41 +45,23 @@
         android:text="Delete Folder"
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cardView"
-        android:layout_width="333dp"
-        android:layout_height="412dp"
+        android:layout_width="351dp"
+        android:layout_height="437dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/cardview_light_background"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorGrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/carditem" />
-
-    <EditText
-        android:id="@+id/editText"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="385dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:fontFamily="monospace"
-        android:inputType="textPersonName"
-        android:text="   Cards"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/homebutton"
-        app:layout_constraintEnd_toStartOf="@+id/deleteFolder"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="  Cards" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/carditem" />
+
 </android.support.constraint.ConstraintLayout>

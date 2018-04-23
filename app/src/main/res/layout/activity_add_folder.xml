@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
     tools:context=".AddFolder">
 
     <EditText
@@ -17,7 +16,7 @@
         android:layout_marginTop="100dp"
         android:background="@android:color/darker_gray"
         android:ems="10"
-        android:hint="Folder Name"
+        android:hint="Deck Name"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

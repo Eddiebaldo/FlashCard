@@ -84,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }//end on create
 
+    @Override
+    protected void onResume() {
+        setTitle("Decks");
+        super.onResume();
+    }
 
     /*
     * This method will check if a folder is supposed to be deleted and remove from database if yes

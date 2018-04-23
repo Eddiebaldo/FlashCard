@@ -27,6 +27,12 @@ public class CardView extends AppCompatActivity {
     CardAdapter cardAdapter = new CardAdapter(new ArrayList<Card>());
     long folderId;
 
+    @Override
+    protected void onResume() {
+        setTitle("Flashcards");
+        super.onResume();
+    }
+
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
