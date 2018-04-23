@@ -20,7 +20,10 @@ public class AddFolder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent result = new Intent();
-                result.putExtra("result", folderName.getText().toString());
+                String f = folderName.getText().toString();
+                if (f.isEmpty())
+                    f = "empty folder name";
+                result.putExtra("result", f);
                 setResult(0, result);
                 finish();
             }

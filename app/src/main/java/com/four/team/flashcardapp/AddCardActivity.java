@@ -21,8 +21,14 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent result = new Intent();
-                result.putExtra("question", question.getText().toString());
-                result.putExtra("answer", answer.getText().toString());
+                String q = question.getText().toString();
+                String a = answer.getText().toString();
+                if (q.isEmpty())
+                    q = "empty question";
+                if (a.isEmpty())
+                    a= "empty answer";
+                result.putExtra("question", q);
+                result.putExtra("answer", a);
                 setResult(1, result);
                 finish();
             }
